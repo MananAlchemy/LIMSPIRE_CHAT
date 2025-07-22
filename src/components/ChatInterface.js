@@ -125,7 +125,11 @@ const ChatInterface = () => {
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.type}`}>
             <div className="message-content">
-              <div className="message-text">{message.content}</div>
+              {message.type === 'ai' ? (
+                <div className="message-text" dangerouslySetInnerHTML={{ __html: message.content }} />
+              ) : (
+                <div className="message-text">{message.content}</div>
+              )}
               <div className="message-time">{formatTime(message.timestamp)}</div>
             </div>
           </div>
